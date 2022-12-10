@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sizzlr_management_side/constants/constants.dart';
+import 'package:sizzlr_management_side/screens/Authentication/LoginScreen.dart';
+import 'package:sizzlr_management_side/screens/Authentication/OtpVerificationScreen.dart';
+import 'package:sizzlr_management_side/screens/Authentication/RegistrationScreen.dart';
+import 'package:sizzlr_management_side/screens/Onboarding/OnboardingScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sizzlr Management side Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true,
+        // primarySwatch: Colors.blue,
+        // primaryColor: Colors.pink
+        colorSchemeSeed: Color(0xFF27742D)
       ),
-      home: const MyHomePage(title: 'Sizzlr Management Side Demo Home Page'),
+      // home: const MyHomePage(title: 'Sizzlr Management Side Demo Home Page'),
+      home: LoginScreen(),
     );
   }
 }
@@ -37,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){}, foregroundColor: Color(0xFF6D49A7),),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'Sizzlr\'s Management Side',
             ),
+            ElevatedButton(onPressed: (){}, child: Text('hoi'),)
           ],
         ),
       ),
