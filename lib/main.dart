@@ -3,6 +3,7 @@ import 'package:sizzlr_management_side/constants/constants.dart';
 import 'package:sizzlr_management_side/screens/Authentication/LoginScreen.dart';
 import 'package:sizzlr_management_side/screens/Authentication/OtpVerificationScreen.dart';
 import 'package:sizzlr_management_side/screens/Authentication/RegistrationScreen.dart';
+import 'package:sizzlr_management_side/screens/Home/HomeScreen.dart';
 import 'package:sizzlr_management_side/screens/Onboarding/OnboardingScreen.dart';
 
 void main() {
@@ -19,12 +20,9 @@ class MyApp extends StatelessWidget {
       title: 'Sizzlr Management side Demo',
       theme: ThemeData(
         useMaterial3: true,
-        // primarySwatch: Colors.blue,
-        // primaryColor: Colors.pink
         colorSchemeSeed: Color(0xFF27742D)
       ),
-      // home: const MyHomePage(title: 'Sizzlr Management Side Demo Home Page'),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
