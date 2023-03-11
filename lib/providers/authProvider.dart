@@ -49,7 +49,7 @@ class AuthProvider with ChangeNotifier {
       } else {
         _canteenId = docSnapshot.get('canteen_id');
         _instituteId = docSnapshot.get('institute_id');
-        print("THIS INSTITUTE ID: ${_instituteId}");
+        print("(INSTITUTE ID, CANTEEN ID): ($_instituteId, $_canteenId)");
       }
 
       notifyListeners();

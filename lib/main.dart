@@ -8,6 +8,7 @@ import 'package:sizzlr_management_side/providers/authProvider.dart';
 import 'package:sizzlr_management_side/providers/canteenProvider.dart';
 import 'package:sizzlr_management_side/providers/categorySelectorProvider.dart';
 import 'package:sizzlr_management_side/providers/itemProvider.dart';
+import 'package:sizzlr_management_side/providers/ordersProvider.dart';
 import 'package:sizzlr_management_side/screens/Authentication/LoginScreen.dart';
 import 'package:sizzlr_management_side/screens/Authentication/OtpVerificationScreen.dart';
 import 'package:sizzlr_management_side/screens/Authentication/RegistrationScreen.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => Filter()),
         ChangeNotifierProvider(create: (_) => VegSelector()),
         ChangeNotifierProvider(create: (_) => ItemProvider()),
+        ChangeNotifierProvider(create: (_) => OrdersProvider()),
       ],
       child: ModalProgressHUD(
         inAsyncCall: isLoading,

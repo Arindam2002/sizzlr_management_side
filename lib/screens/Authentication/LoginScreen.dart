@@ -136,7 +136,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () async {
+                                      setState(() {
+                                        loading = true;
+                                      });
                                       await authProvider.signInWithGoogle();
+                                      setState(() {
+                                        loading = false;
+                                      });
                                     },
                                     child: Text('Sign In with Google'),
                                   ),

@@ -7,9 +7,9 @@ class CanteenProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  String? _canteenId;
+  // String? _canteenId;
 
-  String? get thisCanteenId => _canteenId;
+  // String? get thisCanteenId => _canteenId;
 
   Future<String> onboardCanteen(String instituteId, String canteenName) async {
     CollectionReference canteens = _db.collection('institutions').doc(instituteId).collection('canteens');
@@ -29,7 +29,7 @@ class CanteenProvider with ChangeNotifier {
     await canteens.doc(newCanteenRef.id).set(data, SetOptions(merge: true));
     print("Onboarded!");
 
-    _canteenId = newCanteenRef.id;
+    // _canteenId = newCanteenRef.id;
 
     notifyListeners();
 
