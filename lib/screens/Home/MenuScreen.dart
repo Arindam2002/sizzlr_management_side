@@ -53,7 +53,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         // return Text('Unable to fetch categories at the moment!', style: TextStyle(color: Colors.red),);
-                        return CircularProgressIndicator();
+                        return Center(child: Text('Loading menu items, hang on...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 14, color: Colors.black54),));
                       }
                       final menuItems = snapshot.data!.docs;
                       final availableItems = menuItems.where((item) => item['is_available'] == true).toList();
@@ -86,13 +86,13 @@ class _MenuScreenState extends State<MenuScreen> {
                         .collection('institutions')
                         .doc('X9ydF3xqSTtwR2lBmcUN')
                         .collection('canteens')
-                        .doc('${authProvider.thisCanteenId}')
+                        .doc('${Provider.of<AuthProvider>(context, listen: false).thisCanteenId}')
                         .collection('menu')
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         // return Text('Unable to fetch categories at the moment!', style: TextStyle(color: Colors.red),);
-                        return CircularProgressIndicator();
+                        return Text('Loading items not in stock, hang on...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),);;
                       }
                       final menuItems = snapshot.data!.docs;
                       final unAvailableItems = menuItems.where((item) => item['is_available'] == false).toList();

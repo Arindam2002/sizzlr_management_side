@@ -50,8 +50,8 @@ class _AddItemDialogState extends State<AddItemDialog> {
 
   ChoiceChip buildCanteenChip(BuildContext context,
       {required String? text,
-        required String? categoryId,
-        required int? keyValue}) {
+      required String? categoryId,
+      required int? keyValue}) {
     return ChoiceChip(
       label: Text('$text'),
       labelStyle: TextStyle(fontSize: 12),
@@ -70,9 +70,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
   }
 
   Padding buildVegLabelSelector(BuildContext context,
-      {required  String? text,
-        required int? keyValue,
-        required bool isVeg}) {
+      {required String? text, required int? keyValue, required bool isVeg}) {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0),
       child: ChoiceChip(
@@ -87,7 +85,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(4),
                   border:
-                  Border.all(color: isVeg ? Colors.green : Colors.brown),
+                      Border.all(color: isVeg ? Colors.green : Colors.brown),
                 ),
                 child: Icon(
                   Icons.circle,
@@ -122,7 +120,6 @@ class _AddItemDialogState extends State<AddItemDialog> {
 
   @override
   Widget build(BuildContext context) {
-
     return ModalProgressHUD(
       inAsyncCall: isAddingItem,
       child: AlertDialog(
@@ -210,8 +207,8 @@ class _AddItemDialogState extends State<AddItemDialog> {
               ),
               Text(
                 'Category',
-                style:
-                    TextStyle(color: Colors.black54, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.w400),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
@@ -222,7 +219,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       // return Text('Unable to fetch categories at the moment!', style: TextStyle(color: Colors.red),);
-                      return CircularProgressIndicator();
+                      return Text('Loading categories, hang on...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),);
                     }
                     final categories = snapshot.data!.docs;
                     final chips = categories
@@ -244,19 +241,21 @@ class _AddItemDialogState extends State<AddItemDialog> {
               ),
               Text(
                 'Label',
-                style:
-                    TextStyle(color: Colors.black54, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.w400),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
-                child:Wrap(
-                      spacing: 10,
-                      children: [
-                        buildVegLabelSelector(context, text: 'veg', keyValue: 0, isVeg: true),
-                        buildVegLabelSelector(context, text: 'non-veg', keyValue: 1, isVeg: false),
-                      ],
-                    ),
+                child: Wrap(
+                  spacing: 10,
+                  children: [
+                    buildVegLabelSelector(context,
+                        text: 'veg', keyValue: 0, isVeg: true),
+                    buildVegLabelSelector(context,
+                        text: 'non-veg', keyValue: 1, isVeg: false),
+                  ],
                 ),
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -320,49 +319,48 @@ class _AddItemDialogState extends State<AddItemDialog> {
             },
             child: const Text('Cancel'),
           ),
-          Consumer<CanteenProvider>(
-          builder: (context, canteenProvider, child) {
-            return Builder(
-              builder: (context) {
-                return TextButton(
-                  onPressed: () async {
-                    if(_addItemFormKey.currentState!.validate()) {
-                      setState(() {
-                        isAddingItem = true;
-                      });
-                      Map<String, dynamic> itemData = {
-                        'category_id': categoryIdSelected,
-                        'name': dishName,
-                        'price': price,
-                        'quantity': quantity,
-                        'preparation_time': preparationTime,
-                        'is_available': true,
-                        'is_veg': isVegLabelSelected,
-                      };
-                      print(itemData);
-                      canteenProvider.addItemToMenu(instituteId: 'X9ydF3xqSTtwR2lBmcUN', itemToBeAdded: itemData, canteenId: '${Provider.of<AuthProvider>(context, listen: false).thisCanteenId}');
+          Consumer<CanteenProvider>(builder: (context, canteenProvider, child) {
+            return Builder(builder: (context) {
+              return TextButton(
+                onPressed: () async {
+                  if (_addItemFormKey.currentState!.validate()) {
+                    setState(() {
+                      isAddingItem = true;
+                    });
+                    Map<String, dynamic> itemData = {
+                      'category_id': categoryIdSelected,
+                      'name': dishName,
+                      'price': price,
+                      'quantity': quantity,
+                      'preparation_time': preparationTime,
+                      'is_available': true,
+                      'is_veg': isVegLabelSelected,
+                    };
+                    print(itemData);
+                    canteenProvider.addItemToMenu(
+                        instituteId: 'X9ydF3xqSTtwR2lBmcUN',
+                        itemToBeAdded: itemData,
+                        canteenId:
+                            '${Provider.of<AuthProvider>(context, listen: false).thisCanteenId}');
 
-                      setState(() {
-                        isAddingItem = false;
-                      });
+                    setState(() {
+                      isAddingItem = false;
+                    });
 
-                      context.read<Filter>().resetValue();
-                      context.read<VegSelector>().resetValue();
+                    context.read<Filter>().resetValue();
+                    context.read<VegSelector>().resetValue();
 
-                      Navigator.pop(context, 'Add');
-                    }
-                  },
-                  child: const Text('Add'),
-                );
-              }
-            );
-          }
-          ),
+                    Navigator.pop(context, 'Add');
+                  }
+                },
+                child: const Text('Add'),
+              );
+            });
+          }),
         ],
       ),
     );
   }
-
 }
 
 class EditItemDialog extends StatefulWidget {
@@ -372,7 +370,10 @@ class EditItemDialog extends StatefulWidget {
       required this.quantity,
       required this.estTime,
       required this.price,
-      required this.imageUrl, required this.itemId, required this.categoryIdSelected, required this.isVegLabelSelected})
+      required this.imageUrl,
+      required this.itemId,
+      required this.categoryIdSelected,
+      required this.isVegLabelSelected, required this.outerContext})
       : super(key: key);
 
   final String? dishName;
@@ -383,6 +384,7 @@ class EditItemDialog extends StatefulWidget {
   final String? imageUrl;
   final String? categoryIdSelected;
   final bool? isVegLabelSelected;
+  final BuildContext outerContext;
 
   @override
   State<EditItemDialog> createState() => _EditItemDialogState();
@@ -415,9 +417,8 @@ class _EditItemDialogState extends State<EditItemDialog> {
 
   ChoiceChip buildCanteenChip(BuildContext context,
       {required String? text,
-        required String? categoryId,
-        required int? keyValue}) {
-
+      required String? categoryId,
+      required int? keyValue}) {
     return ChoiceChip(
       label: Text('$text'),
       labelStyle: TextStyle(fontSize: 12),
@@ -436,9 +437,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
   }
 
   Padding buildVegLabelSelector(BuildContext context,
-      {required  String? text,
-        required int? keyValue,
-        required bool isVeg}) {
+      {required String? text, required int? keyValue, required bool isVeg}) {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0),
       child: ChoiceChip(
@@ -453,7 +452,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(4),
                   border:
-                  Border.all(color: isVeg ? Colors.green : Colors.brown),
+                      Border.all(color: isVeg ? Colors.green : Colors.brown),
                 ),
                 child: Icon(
                   Icons.circle,
@@ -494,7 +493,6 @@ class _EditItemDialogState extends State<EditItemDialog> {
     price = widget.price;
     categoryIdSelected = widget.categoryIdSelected;
     isVegLabelSelected = widget.isVegLabelSelected;
-
   }
 
   @override
@@ -507,7 +505,47 @@ class _EditItemDialogState extends State<EditItemDialog> {
         actionsPadding: EdgeInsets.symmetric(horizontal: 0),
         titlePadding: EdgeInsets.only(left: 0, right: 0, bottom: 20),
         contentPadding: EdgeInsets.symmetric(horizontal: 0),
-        title: const Text('Edit item'),
+        title: Stack(
+          children: [
+            Text('Edit item'),
+            Positioned(
+              right: -10,
+              top: 0,
+              child: IconButton(
+                icon: Icon(Icons.delete),
+                visualDensity: VisualDensity(
+                    horizontal: VisualDensity.minimumDensity,
+                    vertical: VisualDensity.minimumDensity),
+                onPressed: () async {
+                  showDialog(context: context, builder: (context) => AlertDialog(
+                    title: Text('Delete this item?'),
+                    content: Text('Once deleted, you can\'t recover this data!'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Provider.of<Filter>(context, listen: false).resetValue();
+                          Provider.of<VegSelector>(context, listen: false).resetValue();
+                          Navigator.pop(context, 'Cancel');
+                        },
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Provider.of<Filter>(context, listen: false).resetValue();
+                          Provider.of<VegSelector>(context, listen: false).resetValue();
+                          Provider.of<CanteenProvider>(context, listen: false).deleteItemFromMenu(instituteId: 'X9ydF3xqSTtwR2lBmcUN', canteenId: Provider.of<AuthProvider>(context, listen: false).thisCanteenId, itemId: widget.itemId!);
+                          Navigator.pop(context, 'Delete');
+                          Navigator.pop(widget.outerContext);
+                        },
+                        child: const Text('Delete'),
+                      ),
+                    ],
+                  ));
+                },
+              ),
+            ),
+          ],
+        ),
         content: Form(
           key: _editItemFormKey,
           child: ListView(
@@ -592,8 +630,8 @@ class _EditItemDialogState extends State<EditItemDialog> {
               ),
               Text(
                 'Category',
-                style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.w400),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
@@ -604,18 +642,18 @@ class _EditItemDialogState extends State<EditItemDialog> {
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       // return Text('Unable to fetch categories at the moment!', style: TextStyle(color: Colors.red),);
-                      return CircularProgressIndicator();
+                      return const Text('Loading categories, hang on...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),);
                     }
                     final categories = snapshot.data!.docs;
                     final chips = categories
                         .map(
                           (category) => buildCanteenChip(
-                        context,
-                        text: category['name'],
-                        keyValue: category['category_id'].hashCode,
-                        categoryId: category['category_id'],
-                      ),
-                    )
+                            context,
+                            text: category['name'],
+                            keyValue: category['category_id'].hashCode,
+                            categoryId: category['category_id'],
+                          ),
+                        )
                         .toList();
                     return Wrap(
                       spacing: 10,
@@ -626,16 +664,20 @@ class _EditItemDialogState extends State<EditItemDialog> {
               ),
               Text(
                 'Label',
-                style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.w400),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
-                child:Wrap(
+                child: Wrap(
                   spacing: 10,
                   children: [
-                    buildVegLabelSelector(context, text: 'veg', keyValue: true.hashCode, isVeg: true),
-                    buildVegLabelSelector(context, text: 'non-veg', keyValue: false.hashCode, isVeg: false),
+                    buildVegLabelSelector(context,
+                        text: 'veg', keyValue: true.hashCode, isVeg: true),
+                    buildVegLabelSelector(context,
+                        text: 'non-veg',
+                        keyValue: false.hashCode,
+                        isVeg: false),
                   ],
                 ),
               ),
@@ -705,39 +747,40 @@ class _EditItemDialogState extends State<EditItemDialog> {
           ),
           Consumer2<AuthProvider, CanteenProvider>(
               builder: (context, authProvider, canteenProvider, child) {
-                return Builder(
-                    builder: (context) {
-                      return TextButton(
-                        onPressed: () async {
-                          if(_editItemFormKey.currentState!.validate()) {
-                            setState(() {
-                              isEditingItem = true;
-                            });
-                            Map<String, dynamic> itemData = {
-                              'category_id': categoryIdSelected,
-                              'name': dishName,
-                              'price': price,
-                              'quantity': quantity,
-                              'preparation_time': preparationTime,
-                              'is_veg': isVegLabelSelected,
-                            };
-                            canteenProvider.updateItemInMenu(instituteId: 'X9ydF3xqSTtwR2lBmcUN', updatedItem: itemData, itemId: '${widget.itemId}', canteenId: authProvider.thisCanteenId);
+            return Builder(builder: (context) {
+              return TextButton(
+                onPressed: () async {
+                  if (_editItemFormKey.currentState!.validate()) {
+                    setState(() {
+                      isEditingItem = true;
+                    });
+                    Map<String, dynamic> itemData = {
+                      'category_id': categoryIdSelected,
+                      'name': dishName,
+                      'price': price,
+                      'quantity': quantity,
+                      'preparation_time': preparationTime,
+                      'is_veg': isVegLabelSelected,
+                    };
+                    canteenProvider.updateItemInMenu(
+                        instituteId: 'X9ydF3xqSTtwR2lBmcUN',
+                        updatedItem: itemData,
+                        itemId: '${widget.itemId}',
+                        canteenId: authProvider.thisCanteenId);
 
-                            setState(() {
-                              isEditingItem = false;
-                            });
+                    setState(() {
+                      isEditingItem = false;
+                    });
 
-                            context.read<Filter>().resetValue();
-                            context.read<VegSelector>().resetValue();
-                            Navigator.pop(context, 'Add');
-                          }
-                        },
-                        child: const Text('Add'),
-                      );
-                    }
-                );
-              }
-          ),
+                    context.read<Filter>().resetValue();
+                    context.read<VegSelector>().resetValue();
+                    Navigator.pop(context, 'Add');
+                  }
+                },
+                child: const Text('Add'),
+              );
+            });
+          }),
         ],
       ),
     );

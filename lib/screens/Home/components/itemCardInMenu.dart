@@ -221,6 +221,7 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                         .updateValue(widget.isVeg.hashCode);
                                     showDialog<String>(
                                       context: context,
+                                      barrierDismissible: false,
                                       builder: (BuildContext context) => Dialog(
                                         insetPadding: EdgeInsets.symmetric(
                                             horizontal: 20, vertical: 20),
@@ -238,7 +239,7 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                               itemId: '${widget.itemId}',
                                               categoryIdSelected:
                                               widget.categoryId,
-                                              isVegLabelSelected: widget.isVeg,
+                                              isVegLabelSelected: widget.isVeg, outerContext: context,
                                             )),
                                       ),
                                     );

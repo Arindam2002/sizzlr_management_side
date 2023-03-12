@@ -56,6 +56,10 @@ class CanteenProvider with ChangeNotifier {
 
     notifyListeners();
   }
+  
+  Future<void> deleteItemFromMenu({required String instituteId, required String? canteenId, required String itemId}) async {
+    await FirebaseFirestore.instance.collection('institutions/$instituteId/canteens/$canteenId/menu').doc(itemId).delete();
+  }
 
   Future<void> updateAvailability({required String? instituteId, required String? canteenId, required String itemId, required bool isAvailable}) async {
     await FirebaseFirestore.instance.collection(
