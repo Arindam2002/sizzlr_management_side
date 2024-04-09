@@ -17,12 +17,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 1;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black);
-  List<Widget> _titleWidgetOptions = <Widget>[
-    Text(
+  final List<Widget> _titleWidgetOptions = <Widget>[
+    const Text(
       'Menu',
       style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
     ),
-    Text(
+    const Text(
       'Orders',
       style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
     ),
@@ -30,20 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
     //   'Budget Management',
     //   style: TextStyle(color: kPrimaryGreen),
     // ),
-    Text(
+    const Text(
       'Profile',
       style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
     ),
   ];
 
-  List<Widget> _widgetOptions = <Widget>[
-    MenuScreen(),
-    OrdersScreen(),
+  final List<Widget> _widgetOptions = <Widget>[
+    const MenuScreen(),
+    const OrdersScreen(),
     // Text(
     //   'Index 2: School',
     //   style: optionStyle,
     // ),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -64,40 +64,40 @@ class _HomeScreenState extends State<HomeScreen> {
         shadowColor: Colors.black,
       ),
       floatingActionButton: _selectedIndex == 0 ? AnimatedContainer(
-        duration: Duration(seconds: 4),
+        duration: const Duration(seconds: 4),
         curve: Curves.easeInCubic,
         child: FloatingActionButton(
           onPressed: () {
             showDialog<String>(
               context: context,
               builder: (BuildContext context) => Dialog(
-                insetPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Container(
+                insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: SizedBox(
                     height: MediaQuery.of(context).size.height / 1.75,
-                    child: AddItemDialog()),
+                    child: const AddItemDialog()),
               ),
             );
           },
           tooltip: 'New in menu',
-          child: Icon(Icons.add_rounded),
+          child: const Icon(Icons.add_rounded),
         ),
       ) : null,
       bottomNavigationBar: BottomNavigationBar(
-        unselectedLabelStyle: TextStyle(fontSize: 10, color: Color(0xFF868686)),
-        selectedLabelStyle: TextStyle(
+        unselectedLabelStyle: const TextStyle(fontSize: 10, color: Color(0xFF868686)),
+        selectedLabelStyle: const TextStyle(
             fontSize: 10, fontWeight: FontWeight.w500, color: Colors.black),
         selectedIconTheme: IconThemeData(color: kPrimaryGreen),
-        unselectedIconTheme: IconThemeData(color: Color(0xFF868686)),
+        unselectedIconTheme: const IconThemeData(color: Color(0xFF868686)),
         selectedItemColor: Colors.black,
-        unselectedItemColor: Color(0xFF868686),
+        unselectedItemColor: const Color(0xFF868686),
         showUnselectedLabels: true,
         items: [
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: _selectedIndex == 0
-                  ? Icon(Icons.food_bank_rounded)
-                  : Icon(Icons.food_bank_outlined),
+                  ? const Icon(Icons.food_bank_rounded)
+                  : const Icon(Icons.food_bank_outlined),
             ),
             label: 'Menu',
           ),
@@ -105,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: _selectedIndex == 1
-                  ? Icon(Icons.lunch_dining_rounded)
-                  : Icon(Icons.lunch_dining_outlined),
+                  ? const Icon(Icons.lunch_dining_rounded)
+                  : const Icon(Icons.lunch_dining_outlined),
             ),
             label: 'Orders',
           ),
@@ -121,8 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: _selectedIndex == 2
-                  ? Icon(Icons.person_rounded)
-                  : Icon(Icons.person_outline),
+                  ? const Icon(Icons.person_rounded)
+                  : const Icon(Icons.person_outline),
             ),
             label: 'Profile',
           ),

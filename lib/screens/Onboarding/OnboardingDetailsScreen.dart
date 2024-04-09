@@ -44,8 +44,8 @@ class _OnboardingDetailsScreenState extends State<OnboardingDetailsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 40),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 5.0, bottom: 40),
                         child: Text(
                           'Commercial Details',
                           style: TextStyle(
@@ -56,7 +56,7 @@ class _OnboardingDetailsScreenState extends State<OnboardingDetailsScreen> {
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                            const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
@@ -80,7 +80,7 @@ class _OnboardingDetailsScreenState extends State<OnboardingDetailsScreen> {
                                         }
                                         return null;
                                       },
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                       decoration: kFormFieldDecoration.copyWith(
                                         labelText: 'Institute Name',
                                       )),
@@ -98,14 +98,14 @@ class _OnboardingDetailsScreenState extends State<OnboardingDetailsScreen> {
                                         }
                                         return null;
                                       },
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                       decoration: kFormFieldDecoration.copyWith(
                                         labelText: 'Canteen Name',
                                       )),
                                 ),
                                 ElevatedButton(
                                     onPressed: () {},
-                                    child: Text('Set Canteen Location')),
+                                    child: const Text('Set Canteen Location')),
                                 Row(
                                   children: [
                                     Expanded(
@@ -126,7 +126,7 @@ class _OnboardingDetailsScreenState extends State<OnboardingDetailsScreen> {
                                               isLoading = false;
                                             });
                                           },
-                                          child: Text('Proceed'),
+                                          child: const Text('Proceed'),
                                         );
                                       }),
                                     ),

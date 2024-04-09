@@ -3,18 +3,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-import 'package:sizzlr_management_side/constants/constants.dart';
 import 'package:sizzlr_management_side/providers/authProvider.dart';
 import 'package:sizzlr_management_side/providers/canteenProvider.dart';
 import 'package:sizzlr_management_side/providers/categorySelectorProvider.dart';
 import 'package:sizzlr_management_side/providers/itemProvider.dart';
 import 'package:sizzlr_management_side/providers/ordersProvider.dart';
 import 'package:sizzlr_management_side/screens/Authentication/LoginScreen.dart';
-import 'package:sizzlr_management_side/screens/Authentication/OtpVerificationScreen.dart';
-import 'package:sizzlr_management_side/screens/Authentication/RegistrationScreen.dart';
 import 'package:sizzlr_management_side/screens/Home/HomeScreen.dart';
 import 'package:sizzlr_management_side/screens/Onboarding/OnboardingDetailsScreen.dart';
-import 'package:sizzlr_management_side/screens/Onboarding/OnboardingScreen.dart';
 
 import 'firebase_options.dart';
 
@@ -47,11 +43,11 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Sizzlr Management side Demo',
           theme:
-              ThemeData(useMaterial3: true, colorSchemeSeed: Color(0xFF27742D)),
+              ThemeData(useMaterial3: true, colorSchemeSeed: const Color(0xFF27742D)),
           home: Consumer<AuthProvider>(
             builder: (context, authProvider, child) {
               if (authProvider.user == null) {
-                return LoginScreen();
+                return const LoginScreen();
               } else {
                 return FutureBuilder<DocumentSnapshot>(
                   future: FirebaseFirestore.instance
@@ -64,7 +60,7 @@ class MyApp extends StatelessWidget {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Scaffold(
+                      return const Scaffold(
                         // TODO: ADD A CUSTOMIZED SIZZLR LOADER
                           body: Center(child: CircularProgressIndicator()),
                       );
@@ -72,9 +68,9 @@ class MyApp extends StatelessWidget {
 
                     final data = snapshot.data!.data() as Map<String, dynamic>?;
                     if (data != null && data['canteen_id'] != "") {
-                      return HomeScreen();
+                      return const HomeScreen();
                     } else {
-                      return OnboardingDetailsScreen();
+                      return const OnboardingDetailsScreen();
                     }
                   },
                 );
@@ -105,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        foregroundColor: Color(0xFF6D49A7),
+        foregroundColor: const Color(0xFF6D49A7),
       ),
       body: Center(
         child: Column(
@@ -116,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
               onPressed: () {},
-              child: Text('hoi'),
+              child: const Text('hoi'),
             )
           ],
         ),

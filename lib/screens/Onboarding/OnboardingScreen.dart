@@ -1,7 +1,4 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sizzlr_management_side/constants/constants.dart';
 
 import '../Home/components/components.dart';
@@ -23,10 +20,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           showDialog<String>(
             context: context,
             builder: (BuildContext context) => Dialog(
-              insetPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Container(
+              insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: SizedBox(
                   height: MediaQuery.of(context).size.height / 1.75,
-                  child: AddItemDialog()),
+                  child: const AddItemDialog()),
             ),
           );
         },
@@ -45,8 +42,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         shadowColor: Colors.black,
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        children: [
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        children: const [
           SizedBox(
             height: 7.5,
           ),
@@ -105,13 +102,13 @@ class AddMenuItemCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               'Fries',
                               style: TextStyle(
@@ -133,7 +130,7 @@ class AddMenuItemCard extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.timer_outlined,
                               color: Colors.black54,
@@ -161,7 +158,7 @@ class AddMenuItemCard extends StatelessWidget {
                             onTap: () {
                               //TODO: Delete item logic
                             },
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               radius: 16,
                               backgroundColor: Colors.transparent,
                               child: Icon(
@@ -171,7 +168,7 @@ class AddMenuItemCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '₹ 45',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),

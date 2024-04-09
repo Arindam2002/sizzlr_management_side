@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
@@ -100,7 +98,7 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                 children: [
                                   Text(
                                     '${widget.dishName}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -110,7 +108,7 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                         padding:
                                         const EdgeInsets.only(top: 3.0),
                                         child: Container(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 2, horizontal: 2),
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
@@ -131,11 +129,11 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             vertical: 4.0, horizontal: 5),
                                         child: Text(
                                           '${widget.quantity}',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 12,
                                               color: Colors.black54),
                                         ),
@@ -157,18 +155,18 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
 
                                       if (snapshot.connectionState ==
                                           ConnectionState.waiting) {
-                                        return Text('Loading...');
+                                        return const Text('Loading...');
                                       }
 
                                       final data = snapshot.data?.data()
                                       as Map<String, dynamic>;
 
                                       return Padding(
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             vertical: 4.0, horizontal: 5),
                                         child: Text(
                                           '${data['name']}',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 12,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic),
@@ -185,17 +183,17 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.timer_outlined,
                                     color: Colors.black54,
                                     size: 18,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 2,
                                   ),
                                   Text(
                                     '${widget.estTime} mins',
-                                    style: TextStyle(),
+                                    style: const TextStyle(),
                                   ),
                                 ],
                               ),
@@ -223,9 +221,9 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                       context: context,
                                       barrierDismissible: false,
                                       builder: (BuildContext context) => Dialog(
-                                        insetPadding: EdgeInsets.symmetric(
+                                        insetPadding: const EdgeInsets.symmetric(
                                             horizontal: 20, vertical: 20),
-                                        child: Container(
+                                        child: SizedBox(
                                             height: MediaQuery.of(context)
                                                 .size
                                                 .height /
@@ -244,7 +242,7 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                       ),
                                     );
                                   },
-                                  child: CircleAvatar(
+                                  child: const CircleAvatar(
                                     radius: 16,
                                     backgroundColor: Colors.transparent,
                                     child: Icon(
@@ -259,10 +257,10 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                                   (context, authProvider, canteenProvider,
                                   child) {
                                 return Switch(
-                                  activeColor: Color(0xFF039487),
-                                  inactiveThumbColor: Color(0xFFd50c11),
+                                  activeColor: const Color(0xFF039487),
+                                  inactiveThumbColor: const Color(0xFFd50c11),
                                   inactiveTrackColor:
-                                  Color(0xFFd50c11).withAlpha(100),
+                                  const Color(0xFFd50c11).withAlpha(100),
                                   value: switchVal,
                                   // value: context.watch<ItemProvider>().toggleVal,
                                   onChanged: (val) async {
@@ -292,7 +290,7 @@ class _ItemCardInMenuState extends State<ItemCardInMenu> {
                             padding: const EdgeInsets.only(right: 15.0),
                             child: Text(
                               '₹ ${widget.price}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ),

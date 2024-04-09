@@ -50,9 +50,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Center(
                     child: Text(
-                      '${user?.displayName ?? ""}',
+                      user?.displayName ?? "",
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                          const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Center(
                     child: Text(
                       '+91-8573918274\n${user?.email}',
-                      style: TextStyle(fontSize: 14, color: Colors.black54),
+                      style: const TextStyle(fontSize: 14, color: Colors.black54),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -79,14 +79,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Colors.grey.withOpacity(0.2),
                                 spreadRadius: 1,
                                 blurRadius: 10,
-                                offset: Offset(1, 2),
+                                offset: const Offset(1, 2),
                               ),
                             ]),
                         child: Theme(
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ExpansionTile(
-                            title: Text(
+                            title: const Text(
                               'Person Details',
                               style: TextStyle(color: Colors.black),
                             ),
@@ -104,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       Expanded(
                                         child: TextFormField(
                                             initialValue:
-                                                '${user?.displayName ?? ""}',
+                                                user?.displayName ?? "",
                                             onChanged: (val) {
                                               userName = val;
                                             },
@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               }
                                               return null;
                                             },
-                                            style: TextStyle(fontSize: 12),
+                                            style: const TextStyle(fontSize: 12),
                                             decoration:
                                                 kFormFieldDecoration.copyWith(
                                               labelText: 'Name',
@@ -128,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     .withOpacity(0.5))),
                                         color: Colors.black54,
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.arrow_forward_ios_rounded,
                                           size: 18,
                                         ),
@@ -160,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               }
                                               return null;
                                             },
-                                            style: TextStyle(fontSize: 12),
+                                            style: const TextStyle(fontSize: 12),
                                             decoration:
                                                 kFormFieldDecoration.copyWith(
                                               labelText: 'Mobile Number',
@@ -174,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     .withOpacity(0.5))),
                                         color: Colors.black54,
                                         onPressed: () {},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.arrow_forward_ios_rounded,
                                           size: 18,
                                         ),
@@ -203,21 +203,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Colors.grey.withOpacity(0.2),
                                 spreadRadius: 1,
                                 blurRadius: 10,
-                                offset: Offset(1, 2),
+                                offset: const Offset(1, 2),
                               ),
                             ]),
                         child: Theme(
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTile(
-                            trailing: Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
+                            trailing: const Padding(
+                              padding: EdgeInsets.only(right: 4.0),
                               child: Icon(
                                 Icons.arrow_forward_ios_rounded,
                                 size: 18,
                               ),
                             ),
-                            title: Text(
+                            title: const Text(
                               'Terms & Conditions',
                               style: TextStyle(color: Colors.black),
                             ),
@@ -225,7 +225,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TermsAndConditions()),
+                                    builder: (context) => const TermsAndConditions()),
                               );
                             },
                           ),
@@ -260,7 +260,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onPressed: () {
                       authProvider.signOut();
                     },
-                    child: Text('Logout')),
+                    child: const Text('Logout')),
               ),
             ],
           ),

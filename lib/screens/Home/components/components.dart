@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
@@ -54,7 +53,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
       required int? keyValue}) {
     return ChoiceChip(
       label: Text('$text'),
-      labelStyle: TextStyle(fontSize: 12),
+      labelStyle: const TextStyle(fontSize: 12),
       side: context.watch<Filter>().value == keyValue
           ? BorderSide(color: kPrimaryGreen)
           : BorderSide(color: Colors.grey.shade300),
@@ -80,7 +79,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
             Padding(
               padding: const EdgeInsets.only(top: 3.0),
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(4),
@@ -94,13 +93,13 @@ class _AddItemDialogState extends State<AddItemDialog> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Text('$text'),
           ],
         ),
-        labelStyle: TextStyle(fontSize: 12),
+        labelStyle: const TextStyle(fontSize: 12),
         side: context.watch<VegSelector>().value == keyValue
             ? BorderSide(color: kPrimaryGreen)
             : BorderSide(color: Colors.grey.shade300),
@@ -123,15 +122,15 @@ class _AddItemDialogState extends State<AddItemDialog> {
     return ModalProgressHUD(
       inAsyncCall: isAddingItem,
       child: AlertDialog(
-        actionsPadding: EdgeInsets.symmetric(horizontal: 0),
-        titlePadding: EdgeInsets.only(left: 0, right: 0, bottom: 20),
-        contentPadding: EdgeInsets.symmetric(horizontal: 0),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 0),
+        titlePadding: const EdgeInsets.only(left: 0, right: 0, bottom: 20),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         title: const Text('Add item'),
         content: Form(
           key: _addItemFormKey,
           child: ListView(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -147,7 +146,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Name', hintText: 'Ex. Aloo Paratha')),
               ),
@@ -164,7 +163,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Quantity', hintText: 'Ex. 1 paratha')),
               ),
@@ -182,7 +181,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Estimated time (in minutes)',
                         hintText: 'Ex. 10 min')),
@@ -201,11 +200,11 @@ class _AddItemDialogState extends State<AddItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Price', hintText: 'Ex. 15')),
               ),
-              Text(
+              const Text(
                 'Category',
                 style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w400),
@@ -219,7 +218,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       // return Text('Unable to fetch categories at the moment!', style: TextStyle(color: Colors.red),);
-                      return Text('Loading categories, hang on...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),);
+                      return const Text('Loading categories, hang on...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),);
                     }
                     final categories = snapshot.data!.docs;
                     final chips = categories
@@ -239,7 +238,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                   },
                 ),
               ),
-              Text(
+              const Text(
                 'Label',
                 style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w400),
@@ -271,7 +270,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
                             color: Colors.grey.shade200,
                           ),
                           child: image?.path == null
-                              ? Icon(
+                              ? const Icon(
                                   Icons.image_outlined,
                                   color: Colors.grey,
                                 )
@@ -287,14 +286,14 @@ class _AddItemDialogState extends State<AddItemDialog> {
                     onPressed: () {
                       pickImage(context);
                     },
-                    child: Row(
+                    child: const Row(
                       children: [
                         Icon(
                           Icons.attach_file,
                           size: 18,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: EdgeInsets.only(left: 5.0),
                           child: Text(
                             'Add Image',
                           ),
@@ -421,7 +420,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
       required int? keyValue}) {
     return ChoiceChip(
       label: Text('$text'),
-      labelStyle: TextStyle(fontSize: 12),
+      labelStyle: const TextStyle(fontSize: 12),
       side: context.watch<Filter>().value == keyValue
           ? BorderSide(color: kPrimaryGreen)
           : BorderSide(color: Colors.grey.shade300),
@@ -447,7 +446,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
             Padding(
               padding: const EdgeInsets.only(top: 3.0),
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(4),
@@ -461,13 +460,13 @@ class _EditItemDialogState extends State<EditItemDialog> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Text('$text'),
           ],
         ),
-        labelStyle: TextStyle(fontSize: 12),
+        labelStyle: const TextStyle(fontSize: 12),
         side: context.watch<VegSelector>().value == keyValue
             ? BorderSide(color: kPrimaryGreen)
             : BorderSide(color: Colors.grey.shade300),
@@ -502,24 +501,24 @@ class _EditItemDialogState extends State<EditItemDialog> {
     return ModalProgressHUD(
       inAsyncCall: isEditingItem,
       child: AlertDialog(
-        actionsPadding: EdgeInsets.symmetric(horizontal: 0),
-        titlePadding: EdgeInsets.only(left: 0, right: 0, bottom: 20),
-        contentPadding: EdgeInsets.symmetric(horizontal: 0),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 0),
+        titlePadding: const EdgeInsets.only(left: 0, right: 0, bottom: 20),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         title: Stack(
           children: [
-            Text('Edit item'),
+            const Text('Edit item'),
             Positioned(
               right: -10,
               top: 0,
               child: IconButton(
-                icon: Icon(Icons.delete),
-                visualDensity: VisualDensity(
+                icon: const Icon(Icons.delete),
+                visualDensity: const VisualDensity(
                     horizontal: VisualDensity.minimumDensity,
                     vertical: VisualDensity.minimumDensity),
                 onPressed: () async {
                   showDialog(context: context, builder: (context) => AlertDialog(
-                    title: Text('Delete this item?'),
-                    content: Text('Once deleted, you can\'t recover this data!'),
+                    title: const Text('Delete this item?'),
+                    content: const Text('Once deleted, you can\'t recover this data!'),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -550,7 +549,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
           key: _editItemFormKey,
           child: ListView(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -567,7 +566,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Name', hintText: 'Ex. Aloo Paratha')),
               ),
@@ -585,7 +584,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Quantity', hintText: 'Ex. 1 paratha')),
               ),
@@ -604,7 +603,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Estimated time (in minutes)',
                         hintText: 'Ex. 10 min')),
@@ -624,11 +623,11 @@ class _EditItemDialogState extends State<EditItemDialog> {
                       }
                       return null;
                     },
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     decoration: kFormFieldDecoration.copyWith(
                         labelText: 'Price', hintText: 'Ex. 15')),
               ),
-              Text(
+              const Text(
                 'Category',
                 style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w400),
@@ -662,7 +661,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
                   },
                 ),
               ),
-              Text(
+              const Text(
                 'Label',
                 style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w400),
@@ -696,7 +695,7 @@ class _EditItemDialogState extends State<EditItemDialog> {
                             color: Colors.grey.shade200,
                           ),
                           child: image?.path == null
-                              ? Icon(
+                              ? const Icon(
                                   Icons.image_outlined,
                                   color: Colors.grey,
                                 )
@@ -713,14 +712,14 @@ class _EditItemDialogState extends State<EditItemDialog> {
                     onPressed: () {
                       pickImage(context);
                     },
-                    child: Row(
+                    child: const Row(
                       children: [
                         Icon(
                           Icons.attach_file,
                           size: 18,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: EdgeInsets.only(left: 5.0),
                           child: Text(
                             'Add Image',
                           ),

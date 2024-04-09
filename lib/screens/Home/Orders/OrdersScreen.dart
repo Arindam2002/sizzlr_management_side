@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 import 'package:sizzlr_management_side/providers/authProvider.dart';
-import 'package:sizzlr_management_side/providers/canteenProvider.dart';
 
 import '../../../constants/constants.dart';
 import '../../../providers/ordersProvider.dart';
@@ -17,10 +16,10 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   List<Widget> items = [
-    ItemRowInOrderCard(itemName: 'Peri Peri Maggi', quantity: 1, price: 65, itemId: '',),
-    ItemRowInOrderCard(itemName: 'Fries', price: 80, quantity: 1, itemId: '',),
-    ItemRowInOrderCard(itemName: 'Peri Peri Maggi', quantity: 1, price: 65, itemId: '',),
-    ItemRowInOrderCard(itemName: 'Fries', price: 80, quantity: 1, itemId: '',),
+    const ItemRowInOrderCard(itemName: 'Peri Peri Maggi', quantity: 1, price: 65, itemId: '',),
+    const ItemRowInOrderCard(itemName: 'Fries', price: 80, quantity: 1, itemId: '',),
+    const ItemRowInOrderCard(itemName: 'Peri Peri Maggi', quantity: 1, price: 65, itemId: '',),
+    const ItemRowInOrderCard(itemName: 'Fries', price: 80, quantity: 1, itemId: '',),
   ];
 
   late int? estimatedTime = 0;
@@ -35,7 +34,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               indicatorColor: kPrimaryGreen,
               unselectedLabelColor: Colors.black,
               labelColor: kPrimaryGreen,
-              tabs: [
+              tabs: const [
                 Tab(text: 'Requests'),
                 Tab(
                   text: 'Preparing',
@@ -52,10 +51,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(child: Text('No requests available right now!'));
+                          return const Center(child: Text('No requests available right now!'));
                         }
                         else if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator(semanticsLabel: 'Loading data...',);
+                          return const CircularProgressIndicator(semanticsLabel: 'Loading data...',);
                         }
                         final requests = snapshot.data!.docs;
                         final requestsListFilter = requests.where((request) => request['request_accepted'] == null).toList();
@@ -86,7 +85,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         }).toList();
                         // print(requestsList);
                         return ListView(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             children: requestsList
                             // [
                             //   SizedBox(
@@ -112,10 +111,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(child: Text('No orders are under preparation right now!'));
+                          return const Center(child: Text('No orders are under preparation right now!'));
                         }
                         else if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator(semanticsLabel: 'Loading data...',);
+                          return const CircularProgressIndicator(semanticsLabel: 'Loading data...',);
                         }
                         final requests = snapshot.data!.docs;
                         final requestsListFilter = requests.where((request) => request['request_accepted'] != null).toList();
@@ -145,7 +144,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         }).toList();
                         // print(requestsList);
                         return ListView(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             children: requestsList
                           // [
                           //   SizedBox(
@@ -230,15 +229,15 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                   children: [
                     Text(
                       '#${widget.orderId.substring(0, 5)}',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    const Text(
                       '00:30',
                       style: TextStyle(fontSize: 16, color: Colors.black54),
                     )
                   ],
                 ),
-                Divider(
+                const Divider(
                   thickness: 0.5,
                 ),
                 SizedBox(
@@ -250,7 +249,7 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(child: Text('Fetching data...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),));
+                          return const Center(child: Text('Fetching data...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),));
                         }
                         final items = snapshot.data!.docs;
                         final itemsList = items.map((item) async {
@@ -295,7 +294,7 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                           ),
                         );
                       },
-                      child: Text('View complete order'),
+                      child: const Text('View complete order'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -304,7 +303,7 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Color(0xFFB3261E)),
+                                  MaterialStateProperty.all(const Color(0xFFB3261E)),
                             ),
                             onPressed: () {
                               setState(() {
@@ -317,20 +316,20 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                                 isLoading = false;
                               });
                             },
-                            child: Text(
+                            child: const Text(
                               'Reject',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Expanded(
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Color(0xFF039487)),
+                                  MaterialStateProperty.all(const Color(0xFF039487)),
                             ),
                             onPressed: () {
                               showDialog(
@@ -338,7 +337,7 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                                 builder: (context) => Form(
                                   key: _estTimeFormKey,
                                   child: AlertDialog(
-                                    title: Text(
+                                    title: const Text(
                                       'Enter the estimated time for completion of the order:',
                                       style: TextStyle(fontSize: 16),
                                     ),
@@ -356,7 +355,7 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                                           }
                                           return null;
                                         },
-                                        style: TextStyle(fontSize: 12),
+                                        style: const TextStyle(fontSize: 12),
                                         decoration: kFormFieldDecoration.copyWith(
                                             labelText: 'Estimated time (mins)',
                                             hintText: 'Ex. 20')),
@@ -365,7 +364,7 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          child: Text('Cancel')),
+                                          child: const Text('Cancel')),
                                       TextButton(
                                           onPressed: () {
                                             if (_estTimeFormKey.currentState!
@@ -386,13 +385,13 @@ class _ItemCardRequestsState extends State<ItemCardRequests> {
                                               Navigator.pop(context);
                                             }
                                           },
-                                          child: Text('Approve the order')),
+                                          child: const Text('Approve the order')),
                                     ],
                                   ),
                                 ),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Approve',
                               style: TextStyle(color: Colors.white),
                             ),
@@ -457,15 +456,15 @@ class _ItemCardPreparingState extends State<ItemCardPreparing> {
                 children: [
                   Text(
                     '#${widget.orderId.substring(0, 5)}',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     '00:30',
                     style: TextStyle(fontSize: 16, color: Colors.black54),
                   )
                 ],
               ),
-              Divider(
+              const Divider(
                 thickness: 0.5,
               ),
               SizedBox(
@@ -477,7 +476,7 @@ class _ItemCardPreparingState extends State<ItemCardPreparing> {
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
-                        return Center(child: Text('Fetching data...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),));
+                        return const Center(child: Text('Fetching data...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),));
                       }
                       final items = snapshot.data!.docs;
                       final itemsList = items.map((item) async {
@@ -522,7 +521,7 @@ class _ItemCardPreparingState extends State<ItemCardPreparing> {
                         ),
                       );
                     },
-                    child: Text('View complete order'),
+                    child: const Text('View complete order'),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -534,7 +533,7 @@ class _ItemCardPreparingState extends State<ItemCardPreparing> {
                                 MaterialStateProperty.all(kPrimaryGreen),
                           ),
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             'Ready!',
                             style: TextStyle(color: Colors.white),
                           ),
@@ -553,7 +552,7 @@ class _ItemCardPreparingState extends State<ItemCardPreparing> {
 }
 
 class ItemRowInOrderCard extends StatefulWidget {
-  ItemRowInOrderCard({
+  const ItemRowInOrderCard({
     Key? key,
     required this.itemName,
     required this.price,
@@ -562,8 +561,8 @@ class ItemRowInOrderCard extends StatefulWidget {
   }) : super(key: key);
 
   final String? itemId;
-  late final String? itemName;
-  late final int? price;
+  final String? itemName;
+  final int? price;
   final int? quantity;
 
   @override
@@ -582,11 +581,11 @@ class _ItemRowInOrderCardState extends State<ItemRowInOrderCard> {
             children: [
               Text(
                 '${widget.itemName}',
-                style: TextStyle(fontWeight: FontWeight.w400),
+                style: const TextStyle(fontWeight: FontWeight.w400),
               ),
               Text(
                 ' (x${widget.quantity})',
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black54, fontStyle: FontStyle.italic),
               ),
             ],
@@ -594,7 +593,7 @@ class _ItemRowInOrderCardState extends State<ItemRowInOrderCard> {
           Text(
             '₹ ${widget.price}',
             style:
-                TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+                const TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -623,20 +622,20 @@ class _ViewCompleteOrderDialogState extends State<ViewCompleteOrderDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Container(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: SizedBox(
         height: MediaQuery.of(context).size.height / 1.75,
         child: AlertDialog(
-          actionsPadding: EdgeInsets.symmetric(horizontal: 0),
-          titlePadding: EdgeInsets.only(left: 0, right: 0, bottom: 20),
-          contentPadding: EdgeInsets.symmetric(horizontal: 0),
+          actionsPadding: const EdgeInsets.symmetric(horizontal: 0),
+          titlePadding: const EdgeInsets.only(left: 0, right: 0, bottom: 20),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 0),
           title: Column(
             children: [
               Text(
                 'Order #${widget.orderId?.substring(0, 5)}',
-                style: TextStyle(fontWeight: FontWeight.w500),
+                style: const TextStyle(fontWeight: FontWeight.w500),
               ),
-              Divider()
+              const Divider()
             ],
           ),
           content: Column(
@@ -649,7 +648,7 @@ class _ViewCompleteOrderDialogState extends State<ViewCompleteOrderDialog> {
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(child: Text('Fetching data...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),));
+                          return const Center(child: Text('Fetching data...', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12, color: Colors.black54),));
                         }
                         final items = snapshot.data!.docs;
                         final itemsList = items.map((item) async {
@@ -688,7 +687,7 @@ class _ViewCompleteOrderDialogState extends State<ViewCompleteOrderDialog> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Sum Total',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -696,7 +695,7 @@ class _ViewCompleteOrderDialogState extends State<ViewCompleteOrderDialog> {
                     Text(
                       '₹ ${widget.totalAmount}',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),

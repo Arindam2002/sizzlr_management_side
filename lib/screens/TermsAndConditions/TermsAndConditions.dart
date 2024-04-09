@@ -12,9 +12,9 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Terms & Conditions'),
+        title: const Text('Terms & Conditions'),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Text('Stuff Goes here')
       ),

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sizzlr_management_side/providers/authProvider.dart';
 
 class CanteenProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
